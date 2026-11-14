@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>两个短剧 skill 库拆解与复用指南</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0b0d;--card:#141417;--soft:#101013;--line:#232327;--hi:#2f2f36;
+--txt:#e8e8ed;--t2:#9c9ca6;--t3:#6b6b76;
+--blue:#5fa8ff;--red:#ff6b6b;--green:#4ee0a4;--amber:#ffb057;--purple:#b78dff}
+body{background:var(--bg);color:var(--txt);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:42px 30px 56px}
+header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px}
+.kicker{font-size:11px;color:var(--t3);letter-spacing:.06em;margin-bottom:12px}
+h1{font-size:27px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.sub{font-size:14px;color:var(--t2);margin-top:12px;line-height:1.75;max-width:800px}
+section{margin-bottom:36px}
+h2{font-size:17px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.idx{font-family:ui-monospace,monospace;font-size:11px;color:var(--t3)}
+.lead{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:16px;max-width:880px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;position:relative;overflow:hidden;margin-bottom:12px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--c)}
+.card h3{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--c)}
+.card p,.card li{font-size:12.5px;color:var(--t2);line-height:1.75}
+.card ul{padding-left:18px}
+.card li{margin-bottom:6px}
+.card b{color:var(--txt);font-weight:600}
+.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;background:#0f0f13;border:1px solid var(--line);border-radius:8px;padding:16px;color:#c8c8d2;line-height:1.8;white-space:pre-wrap;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+th{text-align:left;color:var(--t3);font-weight:500;padding:9px 10px;border-bottom:1px solid var(--line);font-size:11px}
+td{padding:10px;border-bottom:1px solid #1a1a1f;color:var(--t2);vertical-align:top;line-height:1.65}
+td:first-child{color:var(--txt);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td b{color:var(--txt)}
+.star{color:var(--amber);font-weight:600}
+.note{background:var(--soft);border:1px dashed var(--hi);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--t2);line-height:1.8;margin-top:12px}
+.note b{color:var(--amber)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+footer{border-top:1px solid var(--line);padding-top:20px;font-size:11.5px;color:var(--t3);line-height:1.9}
+footer b{color:var(--t2)}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.wrap{padding:26px 16px 40px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">一手内容 · 直接读仓库原文，不是看介绍</div>
+  <h1>两个短剧 skill 库拆解与复用指南</h1>
+  <p class="sub">读了 zenstory-ai/drama-skills 与 eternityspring/shuohao-skills 的 SKILL.md 与 references。这份只写「能直接搬走什么」。MIT / Apache-2.0，均可商用。</p>
+</header>
+
+<section>
+  <h2><span class="idx">01</span>两个库各是什么</h2>
+  <div class="grid2">
+    <div class="card" style="--c:var(--blue)">
+      <h3>drama-skills · 12 个 skill</h3>
+      <div class="mono">short-drama（主编排）
+├─ breakdown   拆解对标 ← 最值钱
+├─ review      审查
+├─ write       写剧本
+├─ novel-analyze 原著分析
+├─ develop     开发
+├─ storyboard  分镜
+├─ produce     制作
+├─ assets      资产
+└─ image / video-prompts</div>
+      <p style="margin-top:10px">许可 MIT。侧重「拆解—生产—审查」全流程，拆解部分做得最工程化。</p>
+    </div>
+    <div class="card" style="--c:var(--green)">
+      <h3>shuohao-skills · 7 个 skill</h3>
+      <div class="mono">novel-outline     大纲五件套（14 道质量门）
+novel-characters  角色资产
+novel-art         美术资产
+novel-script      剧本（10 道质量门）
+novel-staging     调度
+novel-storyboard  分镜
+character-refs    角色参考</div>
+      <p style="margin-top:10px">许可 Apache-2.0。侧重「从小说到剧本」的生产链，<b>质量门全部用脚本确定性检查，不靠模型自觉</b>。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">02</span>最值得搬：breakdown 的 7 步工作流</h2>
+  <p class="lead">这就是一套现成的拆解 SOP，可以直接当我们模板的骨架。</p>
+  <div class="panel">
+    <div class="mono">1. 登记对标与本轮问题（给 REF-ID，不写真名）
+2. 测量：脚本测时长、切点、镜长，出代表帧拼图
+3. 看与读：按 8 个维度逐项记（观察 / 解释 / 未知）
+4. 提炼机制：写成机制候选，单一来源不进库
+5. 和本项目对照：并排差距表，逐条问是不是有意为之
+6. 出片验证：同一模型生成前后两版，同一把尺子再量
+7. 写报告与学习记录，下一轮先读这份</div>
+    <div class="note">
+      <b>机制候选的固定格式</b>：观众状态 / 戏剧问题 / 可选机制 / 可见效果 / 适用条件 / 失效边界 / 不得复制的部分。<br>
+      只在一部剧里出现的做法标「单一来源」，<b>不进机制库</b> —— 这一条能防止把偶然当规律。
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">03</span>拆解的 8 个维度</h2>
+  <p class="lead">每项都分三层写：<b>直接观察</b>（几秒、几次、什么画面）、<b>解释</b>（解决观众什么问题）、<b>未知</b>（测不出或样本不够的地方）。</p>
+  <div class="panel">
+    <table>
+      <tr><th>维度</th><th>具体记什么</th></tr>
+      <tr><td>系列与集长结构</td><td>总集数、第 1 集与之后各集时长；前几集是否加长、加长段完成了什么；之后是否近似定长（定长说明是长母版切的，靠连播不是靠单集钩子）</td></tr>
+      <tr><td>开场</td><td>第一帧与第一句的秒数；开场类型（当面受压 / 进行中的危机 / 旁白压前情 / 结果提前 / 旁人议论）；主角身份、处境、目标各在第几秒交代</td></tr>
+      <tr><td>信息载体</td><td>旁白 / 画面文字（名条、系统面板）/ 对白里的说明 / 插入镜物证，各用在什么时候</td></tr>
+      <tr><td>对白密度与静默</td><td>有声占比、每发声秒字数、最长静默出现在什么戏；一人一句来回还是长段独白</td></tr>
+      <tr><td>镜头语法</td><td>平均镜长、超 4 秒镜头占比；景别分布；对话怎么拍；权力关系怎么落在调度上</td></tr>
+      <tr><td>集尾与下一集怎么接</td><td>最后一句性质（问句/威胁/揭示/被打断）；末句后留几秒；下一集是接着说、换场还是复述</td></tr>
+      <tr><td>画幅与制作形态</td><td>横竖屏、写实/三维/二维；人物脸型与光线风格是否全剧统一</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">04</span>可直接当对照尺的实测基准</h2>
+  <p class="lead">库里附了一组真实测量（9 部三维国漫风 AI 漫剧，2026-11）。<b>注意：这是该形态的参照，不是质量线</b>，别直接套到竖屏写实剧上。</p>
+  <div class="panel">
+    <table>
+      <tr><th>指标</th><th>实测区间</th><th>怎么用</th></tr>
+      <tr><td>第 1 集时长</td><td>中位约 <b>134 秒</b></td><td>首集普遍加长，用来立人设和建冲突</td></tr>
+      <tr><td>之后各集</td><td>中位 <b>36–63 秒</b></td><td>正片单集比想象中短得多</td></tr>
+      <tr><td>平均镜长</td><td>中位 <b>1.9–3.9 秒</b></td><td>打斗特效段可短到 1 秒内</td></tr>
+      <tr><td>有声占比</td><td><b>0.65–0.84</b></td><td>漫剧靠声音往前推，静默不能太多</td></tr>
+      <tr><td>语速</td><td>每发声秒 <b>3.9–5.8 字</b></td><td>古装权谋可慢到约 2.8 字</td></tr>
+      <tr><td>末句后留白</td><td>中位 <b>&lt; 1.2 秒</b></td><td>集尾几乎不停，直接切下一集</td></tr>
+      <tr><td>系统流金手指</td><td><b>全部在第 1 集前 30 秒内出声</b></td><td>系统流不能拖到后面才交代</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">05</span>质量门：可以直接改成你的终审清单</h2>
+  <div class="grid2">
+    <div class="card" style="--c:var(--amber)">
+      <h3>大纲 · 14 道门</h3>
+      <ul>
+        <li>主角组 <b>1–5 人</b>、重要配角 ≤ 10</li>
+        <li>主场景上限随集数动态（60 集 → 10）</li>
+        <li>叙事道具 ≤ 8 件</li>
+        <li><b>爽点间隔 ≤ 3 集，不能真空</b></li>
+        <li>第 1 集必须有钩子</li>
+        <li>大爆点不压最后一集</li>
+        <li>每集三栏齐全、三人同框有拆解</li>
+        <li>叙述体，不能带引号对白</li>
+      </ul>
+    </div>
+    <div class="card" style="--c:var(--red)">
+      <h3>剧本 · 10 道门</h3>
+      <ul>
+        <li>每集时长在目标 <b>±15%</b> 内</li>
+        <li>单句台词 <b>≤ 35 字</b></li>
+        <li>说话人必须合法（本场人物或 VO）</li>
+        <li><b>钩子具象在前 3 拍内兑现</b>（冷开场）</li>
+        <li><b>每场至少一个动作节拍</b>——纯对白场是广播剧</li>
+        <li>爽点必须认领，防止改着改着改丢</li>
+        <li>角色 / 场景 / 光照 / 道具对账上游</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">shuohao 的核心原则：<b>剧本管戏，分镜管拍</b>。台词是结构化数据（说话人 + 台词 + 语气），动作是独立节拍——这样台词能直接对接 TTS，动作节拍能直接喂生成。</div>
+</section>
+
+<section>
+  <h2><span class="idx">06</span>编剧向：哪些最好用</h2>
+  <div class="panel">
+    <table>
+      <tr><th>库 / skill</th><th>最适合干什么</th><th>推荐度</th></tr>
+      <tr><td>shuohao / novel-script</td><td>把大纲落成可拍剧本，带时长估算与 10 道质量门，零依赖可跑，自带完整样例《渡口》</td><td class="star">★★★</td></tr>
+      <tr><td>shuohao / novel-outline</td><td>小说改短剧大纲，14 道质量门；<b>体检模式</b>能贴一份现成大纲进去只跑诊断</td><td class="star">★★★</td></tr>
+      <tr><td>drama / short-drama-write</td><td>单集剧本写作规范、去 AI 味定点修订、时长估算脚本</td><td class="star">★★</td></tr>
+      <tr><td>drama / short-drama-review</td><td>团队评审规范：四级结论 + 证据要求，明确「AI 味」不能替代证据</td><td class="star">★★</td></tr>
+      <tr><td>e06084/claude-screenwriting</td><td>救猫咪 15 节拍表理论底座（含中文版）</td><td class="star">★</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">07</span>建议的搬用顺序</h2>
+  <div class="panel">
+    <table>
+      <tr><th>顺序</th><th>搬什么</th><th>搬到哪</th></tr>
+      <tr><td>1</td><td>breakdown 的 7 步工作流 + 8 拆解维度</td><td>直接当我们《爆款拆解 SOP 模板》的骨架</td></tr>
+      <tr><td>2</td><td>实测基准表</td><td>对照自己剧的时长、镜长、语速是否离谱</td></tr>
+      <tr><td>3</td><td>outline 的「爽点间隔 ≤ 3 集」、script 的「每场至少一个动作节拍」「钩子前 3 拍兑现」</td><td>写进剧本终审清单</td></tr>
+      <tr><td>4</td><td>机制候选格式（含「单一来源不进库」）</td><td>案例库的结论写法，防止把偶然当规律</td></tr>
+    </table>
+  </div>
+  <div class="note">许可证：drama-skills 为 MIT，shuohao-skills 为 Apache-2.0，<b>均可商用</b>。原文为中文，无需翻译。</div>
+</section>
+
+<footer>
+  <b>一手来源</b><br>
+  github.com/zenstory-ai/drama-skills（skills/short-drama-breakdown、short-drama-review、short-drama-write 及 references/breakdown-dimensions.md）<br>
+  github.com/eternityspring/shuohao-skills（skills/novel-outline、novel-script）<br>
+  读取日期：2026-11-07。实测基准为原库声明的样本范围，不外推。
+</footer>
+
+</div>
+</body>
+</html>

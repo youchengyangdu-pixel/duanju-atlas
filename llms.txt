@@ -10,6 +10,8 @@
 - 索引：`indexes/by-genre.json` / `by-structure.json` / `by-hook.json` / `by-paywall.json`
 - 自动拉片：`pipeline/run.py`
 - 检索：`pipeline/query.py`
+- 拆解工具：`tools/爆款拆解SOP模板.html`
+- 方法论文档：`docs/短剧skill库拆解与复用指南.html`
 
 ## 怎么用（给 AI）
 

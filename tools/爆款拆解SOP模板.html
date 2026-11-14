@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爆款短剧拆解 SOP · 案例库</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0b0d;--card:#141417;--soft:#101013;--line:#232327;--hi:#2f2f36;
+  --txt:#e8e8ed;--t2:#9c9ca6;--t3:#6b6b76;
+  --blue:#5fa8ff;--red:#ff6b6b;--green:#4ee0a4;--amber:#ffb057;--purple:#b78dff;
+}
+body{background:var(--bg);color:var(--txt);font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{position:sticky;top:0;z-index:20;background:rgba(11,11,13,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+h1{font-size:16px;font-weight:600;margin-right:auto}
+.btn{background:#1c1c22;border:1px solid var(--hi);color:var(--txt);border-radius:7px;padding:7px 13px;font-size:12px}
+.btn:hover{background:#26262e}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#04101f;font-weight:600}
+.btn.warn{color:#ff9a9a}
+.layout{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 56px)}
+aside{border-right:1px solid var(--line);padding:18px 14px;background:var(--soft)}
+aside h3{font-size:11px;color:var(--t3);letter-spacing:.05em;margin-bottom:12px}
+.case-item{padding:10px 12px;border-radius:8px;border:1px solid transparent;margin-bottom:6px;cursor:pointer;font-size:12.5px}
+.case-item:hover{background:#1a1a20}
+.case-item.on{background:#1e1e26;border-color:var(--hi)}
+.case-item .t{color:var(--txt);font-weight:600;line-height:1.4}
+.case-item .s{color:var(--t3);font-size:11px;margin-top:4px}
+.empty{color:var(--t3);font-size:12px;line-height:1.8;padding:14px 4px}
+main{padding:26px 30px 70px;max-width:1000px}
+section{margin-bottom:18px;border:1px solid var(--line);border-radius:11px;background:var(--card);overflow:hidden}
+.sec-h{display:flex;align-items:center;gap:10px;padding:14px 18px;cursor:pointer;user-select:none;background:#16161b}
+.sec-h:hover{background:#1b1b21}
+.sec-h .n{font-family:ui-monospace,monospace;font-size:11px;color:var(--t3)}
+.sec-h .t{font-size:13.5px;font-weight:600}
+.sec-h .hint{margin-left:auto;font-size:11px;color:var(--t3)}
+.sec-b{padding:18px;display:none}
+section.open .sec-b{display:block}
+.sec-h .arrow{color:var(--t3);font-size:11px}
+section.open .sec-h .arrow{transform:rotate(90deg)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+label{display:block;font-size:11.5px;color:var(--t3);margin-bottom:5px}
+input[type=text],input[type=number],textarea,select{
+  width:100%;background:#0f0f13;border:1px solid var(--line);color:var(--txt);
+  border-radius:7px;padding:8px 10px;font-size:12.5px;line-height:1.55}
+textarea{min-height:66px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue)}
+.full{grid-column:1/-1}
+.note{font-size:11.5px;color:var(--t3);line-height:1.7;margin-top:8px}
+.note b{color:var(--amber)}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
+th{text-align:left;color:var(--t3);font-weight:500;padding:6px 5px;border-bottom:1px solid var(--line);font-size:10.5px}
+td{padding:4px 5px;border-bottom:1px solid #1a1a1f}
+td input,td select{padding:5px 6px;font-size:11.5px}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--hi);color:var(--t2);cursor:pointer;background:transparent}
+.tag.on{background:var(--blue);border-color:var(--blue);color:#04101f;font-weight:600}
+.ruler{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pill{background:var(--soft);border:1px solid var(--line);border-radius:7px;padding:8px 12px;font-size:11.5px;color:var(--t2)}
+.pill b{color:var(--green)}
+footer{border-top:1px solid var(--line);padding:20px 30px;color:var(--t3);font-size:11.5px;line-height:1.9}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#1e1e26;border:1px solid var(--hi);color:var(--txt);padding:10px 20px;border-radius:8px;font-size:12.5px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99}
+.toast.show{opacity:1}
+@media(max-width:860px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}.grid,.grid3{grid-template-columns:1fr}main{padding:18px 14px 50px}}
+@media print{aside,header,.noprint{display:none}main{max-width:none}body{background:#fff;color:#000}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="noprint">
+  <h1>爆款短剧拆解 SOP · 案例库</h1>
+  <button class="btn pri" onclick="newCase()">＋ 新建案例</button>
+  <button class="btn" onclick="exportMD()">导出 Markdown</button>
+  <button class="btn" onclick="exportJSON()">备份全库</button>
+  <button class="btn" onclick="document.getElementById('help').classList.toggle('open')">使用说明</button>
+</header>
+
+<div class="layout">
+<aside class="noprint">
+  <h3>案例库 <span id="cnt"></span></h3>
+  <div id="caseList"></div>
+</aside>
+
+<main>
+<section id="help">
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')">
+    <span class="n">00</span><span class="t">怎么用这套模板</span><span class="arrow">▶</span>
+  </div>
+  <div class="sec-b">
+    <p class="note" style="font-size:12.5px;color:var(--t2)">
+      每部对标剧建一张卡，按 A–L 十二组填。填完点「导出 Markdown」，直接贴进 Obsidian 就是一个案例。<br><br>
+      <b>两条铁律：</b><br>
+      ① <b>案例库 ≠ 代表作</b>。案例库 → 提升判断力 → 做出爆款 → 简历上的代表作。只做案例不做作品，JD 那关过不了。<br>
+      ② <b>归因必须分层</b>。掉人不一定怪内容，可能是制作穿帮、付费墙太硬、或投流人群不对。归因错了，改的方向全错。<br><br>
+      <b>两个硬指标：</b>每 3 集一个打脸名场面；每 5 集一次身份或关系反转。连续 3 集只有虐或只有爽，大概率扑。<br><br>
+      <b>案例库归档按「可复用维度」，不按时间。</b>半年后你要找「扮猪吃虎在女频怎么用」，能直接翻到。
+    </p>
+  </div>
+</section>
+
+<section class="open">
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">A</span><span class="t">基础信息</span><span class="hint">这部剧是谁</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid3">
+      <div><label>剧名 *</label><input type="text" id="f_title" oninput="save()"></div>
+      <div><label>平台</label><input type="text" id="f_platform" placeholder="ReelShort / DramaBox…" oninput="save()"></div>
+      <div><label>拆解日期</label><input type="text" id="f_date" oninput="save()"></div>
+      <div><label>上线时间</label><input type="text" id="f_release" oninput="save()"></div>
+      <div><label>集数 / 单集时长</label><input type="text" id="f_eps" placeholder="80 集 / 90 秒" oninput="save()"></div>
+      <div><label>数据来源</label><input type="text" id="f_source" placeholder="平台后台 / 第三方报道" oninput="save()"></div>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>题材</label><input type="text" id="f_genre" placeholder="狼人 / 西幻 / 都市言情…" oninput="save()"></div>
+      <div><label>底层框架</label><input type="text" id="f_frame" placeholder="言情 / 复仇 / 逆袭 / 悬疑" oninput="save()"></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>目标人群</label><input type="text" id="f_audience" placeholder="性别、年龄段、地区、付费习惯" oninput="save()"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">B</span><span class="t">结构骨架</span><span class="hint">起承转合与反转位置</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="full"><label>一句话卖点 Logline</label><textarea id="f_logline" oninput="save()"></textarea></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>主线冲突</label><textarea id="f_conflict" oninput="save()"></textarea></div>
+      <div><label>最终结局</label><textarea id="f_ending" oninput="save()"></textarea></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>起承转合</label><input type="text" id="f_arc" placeholder="男频参考：压迫 → 隐忍 → 掉马 → 碾压 → 后悔" oninput="save()"></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>核心反转锁在哪一集</label><input type="text" id="f_twistAt" placeholder="通常第 25–30 集" oninput="save()"></div>
+      <div><label>每集起承转合是否清晰</label><input type="text" id="f_arcEach" oninput="save()"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">C</span><span class="t">前三集专项</span><span class="hint">最重要的一段</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid">
+      <div><label>开场 10 秒：有没有「不对劲」的画面</label><textarea id="f_open10" oninput="save()"></textarea></div>
+      <div><label>第 1 集结尾钩子类型</label><textarea id="f_ep1hook" oninput="save()"></textarea></div>
+      <div><label>第 2 集怎么升级冲突</label><textarea id="f_ep2" oninput="save()"></textarea></div>
+      <div><label>第 3 集首次反转：翻的是关系 / 身份 / 处境？</label><textarea id="f_ep3" oninput="save()"></textarea></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>首次付费卡点候选位置</label><input type="text" id="f_paywall" placeholder="第几集、卡在哪类悬念上" oninput="save()"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">D</span><span class="t">人设</span><span class="hint">反差与行动</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid">
+      <div><label>主角单一定位（不堆标签）</label><input type="text" id="f_role" placeholder="落魄赘婿 / 被放逐公主" oninput="save()"></div>
+      <div><label>视觉符号</label><input type="text" id="f_visual" placeholder="眉心红痣 / 固定穿搭 / 旧疤" oninput="save()"></div>
+      <div><label>性格关键词（一两个）</label><input type="text" id="f_char" placeholder="嘴硬心软 / 白切黑" oninput="save()"></div>
+      <div><label>直白动机</label><input type="text" id="f_motive" placeholder="复仇打脸 / 守护家人" oninput="save()"></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>反差在哪、第几集亮出来、用什么行动演</label><textarea id="f_contrast" placeholder="不是靠台词说，是用行动演" oninput="save()"></textarea></div>
+    <div class="full" style="margin-top:12px"><label>配角功能与人物关系拓扑</label><textarea id="f_cast" placeholder="反派的利益逻辑、助攻、情绪调节" oninput="save()"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">E</span><span class="t">节奏与情绪</span><span class="hint">曲线平的就是问题</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="full"><label>每集情绪值打分与曲线（-5 到 +5）</label><textarea id="f_emotion" placeholder="EP1 +2 / EP2 -1 / EP3 +4 …" oninput="save()"></textarea></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>爽点 / 虐点分布</label><input type="text" id="f_shuang" placeholder="连续 3 集只有虐或只有爽要警惕" oninput="save()"></div>
+      <div><label>打脸名场面频率</label><input type="text" id="f_slap" placeholder="参考：每 3 集一个" oninput="save()"></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>反转频率</label><input type="text" id="f_twistFreq" placeholder="参考：每 5 集一次身份或关系反转" oninput="save()"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">F</span><span class="t">钩子系统</span><span class="hint">找同质化疲劳区</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="note">每集结尾钩子类型，可从：<b>利益骤变 / 身份曝光 / 道德突破 / 情感背叛 / 悬念 / 羞辱 / 危机 / 欲望</b> 里选。连续 3 个同类型会疲劳。</div>
+    <div id="hookRows"></div>
+    <button class="btn" style="margin-top:10px" onclick="addHook()">＋ 加一集</button>
+    <div class="full" style="margin-top:12px"><label>疲劳区在哪几集、伏笔咬合度</label><textarea id="f_hookFatigue" oninput="save()"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">G</span><span class="t">台词功能</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="note">每句标功能：<b>推剧情 / 立人设 / 埋钩子 / 给情绪</b>。只「抛信息」的台词标为可删。</div>
+    <div class="full"><label>典型台词与功能标注</label><textarea id="f_lines" style="min-height:90px" oninput="save()"></textarea></div>
+    <div class="full" style="margin-top:12px"><label>可删的台词</label><textarea id="f_linesDel" oninput="save()"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">H</span><span class="t">镜头与视听</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid">
+      <div><label>景别运用</label><textarea id="f_shot" placeholder="打脸用特写、身份反转用全景、情绪用慢镜头+特写" oninput="save()"></textarea></div>
+      <div><label>AI 穿帮点</label><textarea id="f_aibug" placeholder="角色一致性 / 口型 / 手部 / 服装漂移" oninput="save()"></textarea></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>画面信息（不靠台词能看懂什么）</label><textarea id="f_visualInfo" placeholder="道具、站位、表情" oninput="save()"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">I</span><span class="t">上线数据</span><span class="hint">分集流失曲线最关键</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid3">
+      <div><label>完播率</label><input type="text" id="d_finish" oninput="save()"></div>
+      <div><label>1→2 集续看率</label><input type="text" id="d_retain" placeholder="参考线 >55%" oninput="save()"></div>
+      <div><label>付费转化率</label><input type="text" id="d_pay" placeholder="参考线 >8%" oninput="save()"></div>
+    </div>
+    <div class="note" style="margin-top:12px">分集流失记录：填「集数 + 留存%」，找出陡降点。</div>
+    <div id="dropRows"></div>
+    <button class="btn" style="margin-top:10px" onclick="addDrop()">＋ 加一行</button>
+    <div class="grid" style="margin-top:12px">
+      <div><label>口碑与差评关键词</label><textarea id="d_review" oninput="save()"></textarea></div>
+      <div><label>投流数据（有就记）</label><textarea id="d_ads" placeholder="素材量 / 消耗 / ROI" oninput="save()"></textarea></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">J</span><span class="t">归因分析</span><span class="hint">四层，别都怪内容</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="note">
+      <b>内容层</b>：连续同类型钩子、流失平缓下滑　|　<b>制作层</b>：流失集中在某场戏、评论骂画面　|　
+      <b>商业层</b>：流失点正好在付费墙　|　<b>渠道层</b>：第 1 集就大量流失、评论说「被骗了」
+    </div>
+    <div class="tagrow" id="reasonTags"></div>
+    <div class="full" style="margin-top:12px"><label>归因结论与证据</label><textarea id="j_reason" style="min-height:90px" placeholder="哪一层的问题？证据是什么？下一步怎么改？" oninput="save()"></textarea></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">K</span><span class="t">可复用结论</span><span class="hint">一句话公式</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="grid">
+      <div><label>可复制的部分</label><textarea id="k_copy" placeholder="题材、结构、人设、节奏" oninput="save()"></textarea></div>
+      <div><label>不可复制的部分</label><textarea id="k_nocopy" placeholder="时机、渠道、运气" oninput="save()"></textarea></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>一句话公式</label><input type="text" id="k_formula" placeholder="例：狼人复仇 = 狼族设定 + 被放逐觉醒 + 归来复仇 + AI 视觉奇观" oninput="save()"></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">L</span><span class="t">案例归档</span><span class="hint">按可复用维度打标签</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="note">按题材 / 结构 / 人设 / 数据表现 / 失败归因打标签。<b>不要按时间归档</b>，否则半年后找不到。</div>
+    <div class="grid">
+      <div><label>题材标签</label><input type="text" id="l_genre" oninput="save()"></div>
+      <div><label>结构模式标签</label><input type="text" id="l_struct" placeholder="扮猪吃虎 / 灰姑娘逆袭 / 隐藏大佬" oninput="save()"></div>
+      <div><label>人设类型标签</label><input type="text" id="l_role" placeholder="白切黑 / 废物逆袭 / 被放逐公主" oninput="save()"></div>
+      <div><label>数据表现标签</label><input type="text" id="l_perf" placeholder="高完播低付费 / 双高 / 双低" oninput="save()"></div>
+    </div>
+    <div class="full" style="margin-top:12px"><label>失败归因标签</label><input type="text" id="l_fail" placeholder="内容 / 制作 / 商业 / 渠道" oninput="save()"></div>
+    <div class="full" style="margin-top:12px"><label>关联到团队 SOP 的哪一条</label><input type="text" id="l_sop" oninput="save()"></div>
+  </div>
+</section>
+
+<div class="noprint" style="display:flex;gap:10px;margin-top:22px">
+  <button class="btn pri" onclick="exportMD()">导出本案例 Markdown</button>
+  <button class="btn" onclick="window.print()">打印</button>
+  <button class="btn warn" onclick="delCase()">删除本案例</button>
+</div>
+</main>
+</div>
+
+<footer>
+  爆款拆解 SOP · 单文件离线工具。数据保存在本机浏览器 localStorage，不上传任何服务器。<br>
+  「导出 Markdown」可直接贴进 Obsidian；「备份全库」导出 JSON，换机时可重新导入（把 JSON 内容贴到控制台 <code>localStorage.setItem('duanju_cases_v1', ...)</code>）。<br>
+  方法论来源：编剧老山六维拆解 / Shorstory 12 列节拍表 / 神农谷拆解指南 / DataEye 爆款公式。
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var KEY = "duanju_cases_v1";
+var cases = [];
+var cur = -1;
+
+var HOOK_TYPES = ["利益骤变","身份曝光","道德突破","情感背叛","悬念","羞辱","危机","欲望"];
+var REASONS = ["内容层","制作层","商业层","渠道层"];
+
+function toast(msg){
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show") }, 1800);
+}
+function load(){
+  try{ cases = JSON.parse(localStorage.getItem(KEY) || "[]") }catch(e){ cases = [] }
+  renderList();
+  if(cases.length){ selectCase(0) } else { newCase() }
+}
+function persist(){
+  try{ localStorage.setItem(KEY, JSON.stringify(cases)) }catch(e){}
+}
+function blank(){
+  var o = { hooks:[], drops:[], reasons:[] };
+  return o;
+}
+function newCase(){
+  save();
+  cases.push(blank());
+  selectCase(cases.length - 1);
+  toast("已新建案例");
+}
+function delCase(){
+  if(cur < 0) return;
+  if(!confirm("确定删除当前案例？此操作不可恢复。")) return;
+  cases.splice(cur, 1);
+  persist();
+  cur = -1;
+  if(cases.length){ selectCase(0) } else { renderList(); newCase() }
+  toast("已删除");
+}
+function selectCase(i){
+  cur = i;
+  var c = cases[i] || blank();
+  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_']").forEach(function(el){
+    el.value = c[el.id] || "";
+  });
+  renderHooks(); renderDrops(); renderReasons(); renderList();
+}
+function save(){
+  if(cur < 0) return;
+  var c = cases[cur];
+  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_']").forEach(function(el){
+    c[el.id] = el.value;
+  });
+  persist();
+  renderList();
+}
+function renderList(){
+  var box = document.getElementById("caseList");
+  document.getElementById("cnt").textContent = cases.length ? "(" + cases.length + ")" : "";
+  if(!cases.length){ box.innerHTML = '<div class="empty">还没有案例。<br>点右上「新建案例」开始拆第一部剧。</div>'; return }
+  box.innerHTML = cases.map(function(c, i){
+    return '<div class="case-item' + (i===cur?" on":"") + '" onclick="selectCase(' + i + ')">' +
+      '<div class="t">' + esc(c.f_title || "未命名案例") + '</div>' +
+      '<div class="s">' + esc(c.f_genre || "未填题材") + ' · ' + esc(c.f_platform || "—") + '</div></div>';
+  }).join("");
+}
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>]/g, function(m){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[m] }) }
+
+/* ---- 钩子表 ---- */
+function addHook(){
+  if(cur < 0) return;
+  save();
+  cases[cur].hooks.push({ ep:"", type:HOOK_TYPES[0], note:"" });
+  persist(); renderHooks();
+}
+function renderHooks(){
+  var c = cases[cur] || blank();
+  var box = document.getElementById("hookRows");
+  if(!c.hooks.length){ box.innerHTML = '<div class="note">还没有记录，点下方「加一集」。</div>'; return }
+  var h = '<table><tr><th style="width:60px">集数</th><th style="width:130px">钩子类型</th><th>备注</th><th style="width:36px"></th></tr>';
+  c.hooks.forEach(function(r, i){
+    h += '<tr><td><input type="text" value="' + esc(r.ep) + '" onchange="cases[' + cur + '].hooks[' + i + '].ep=this.value;persist()"></td>' +
+      '<td><select onchange="cases[' + cur + '].hooks[' + i + '].type=this.value;persist()">' +
+      HOOK_TYPES.map(function(t){ return '<option' + (r.type===t?" selected":"") + '>' + t + '</option>' }).join("") +
+      '</select></td>' +
+      '<td><input type="text" value="' + esc(r.note) + '" onchange="cases[' + cur + '].hooks[' + i + '].note=this.value;persist()"></td>' +
+      '<td><button class="btn" onclick="cases[' + cur + '].hooks.splice(' + i + ',1);persist();renderHooks()">×</button></td></tr>';
+  });
+  box.innerHTML = h + '</table>';
+}
+
+/* ---- 流失表 ---- */
+function addDrop(){
+  if(cur < 0) return;
+  save();
+  cases[cur].drops.push({ ep:"", rate:"", note:"" });
+  persist(); renderDrops();
+}
+function renderDrops(){
+  var c = cases[cur] || blank();
+  var box = document.getElementById("dropRows");
+  if(!c.drops.length){ box.innerHTML = '<div class="note">还没有记录，点下方「加一行」。</div>'; return }
+  var h = '<table><tr><th style="width:70px">集数</th><th style="width:100px">留存 %</th><th>该集发生了什么</th><th style="width:36px"></th></tr>';
+  c.drops.forEach(function(r, i){
+    h += '<tr><td><input type="text" value="' + esc(r.ep) + '" onchange="cases[' + cur + '].drops[' + i + '].ep=this.value;persist()"></td>' +
+      '<td><input type="text" value="' + esc(r.rate) + '" onchange="cases[' + cur + '].drops[' + i + '].rate=this.value;persist()"></td>' +
+      '<td><input type="text" value="' + esc(r.note) + '" onchange="cases[' + cur + '].drops[' + i + '].note=this.value;persist()"></td>' +
+      '<td><button class="btn" onclick="cases[' + cur + '].drops.splice(' + i + ',1);persist();renderDrops()">×</button></td></tr>';
+  });
+  box.innerHTML = h + '</table>';
+}
+
+/* ---- 归因标签 ---- */
+function renderReasons(){
+  var c = cases[cur] || blank();
+  document.getElementById("reasonTags").innerHTML = REASONS.map(function(r){
+    var on = (c.reasons || []).indexOf(r) >= 0;
+    return '<button class="tag' + (on?" on":"") + '" onclick="toggleReason(\'' + r + '\')">' + r + '</button>';
+  }).join("");
+}
+function toggleReason(r){
+  save();
+  var arr = cases[cur].reasons || [];
+  var i = arr.indexOf(r);
+  if(i >= 0) arr.splice(i,1); else arr.push(r);
+  cases[cur].reasons = arr;
+  persist(); renderReasons();
+}
+
+/* ---- 导出 ---- */
+function val(c, k){ return c[k] ? String(c[k]) : "—" }
+function exportMD(){
+  if(cur < 0){ toast("先新建一个案例"); return }
+  save();
+  var c = cases[cur];
+  var L = [];
+  L.push("# " + (c.f_title || "未命名案例"));
+  L.push("");
+  L.push("> 拆解日期：" + val(c,"f_date") + "　平台：" + val(c,"f_platform") + "　题材：" + val(c,"f_genre"));
+  L.push("");
+  L.push("## A. 基础信息");
+  L.push("- 上线时间：" + val(c,"f_release") + "；集数/时长：" + val(c,"f_eps"));
+  L.push("- 底层框架：" + val(c,"f_frame") + "；目标人群：" + val(c,"f_audience"));
+  L.push("- 数据来源：" + val(c,"f_source"));
+  L.push("");
+  L.push("## B. 结构骨架");
+  L.push("- Logline：" + val(c,"f_logline"));
+  L.push("- 主线冲突：" + val(c,"f_conflict"));
+  L.push("- 结局：" + val(c,"f_ending"));
+  L.push("- 起承转合：" + val(c,"f_arc"));
+  L.push("- 核心反转位置：" + val(c,"f_twistAt"));
+  L.push("");
+  L.push("## C. 前三集专项");
+  L.push("- 开场 10 秒：" + val(c,"f_open10"));
+  L.push("- 第 1 集钩子：" + val(c,"f_ep1hook"));
+  L.push("- 第 2 集升级：" + val(c,"f_ep2"));
+  L.push("- 第 3 集首次反转：" + val(c,"f_ep3"));
+  L.push("- 首次付费卡点：" + val(c,"f_paywall"));
+  L.push("");
+  L.push("## D. 人设");
+  L.push("- 主角定位：" + val(c,"f_role") + "；视觉符号：" + val(c,"f_visual"));
+  L.push("- 性格关键词：" + val(c,"f_char") + "；动机：" + val(c,"f_motive"));
+  L.push("- 反差与亮出方式：" + val(c,"f_contrast"));
+  L.push("- 配角功能：" + val(c,"f_cast"));
+  L.push("");
+  L.push("## E. 节奏与情绪");
+  L.push("- 情绪曲线：" + val(c,"f_emotion"));
+  L.push("- 爽虐分布：" + val(c,"f_shuang") + "；打脸频率：" + val(c,"f_slap") + "；反转频率：" + val(c,"f_twistFreq"));
+  L.push("");
+  L.push("## F. 钩子系统");
+  if(c.hooks && c.hooks.length){
+    c.hooks.forEach(function(r){ L.push("- EP" + (r.ep||"?") + "：" + r.type + (r.note ? "（" + r.note + "）" : "")) });
+  } else L.push("- （未记录）");
+  L.push("- 疲劳区与伏笔咬合：" + val(c,"f_hookFatigue"));
+  L.push("");
+  L.push("## G. 台词功能");
+  L.push(val(c,"f_lines"));
+  L.push("- 可删台词：" + val(c,"f_linesDel"));
+  L.push("");
+  L.push("## H. 镜头与视听");
+  L.push("- 景别：" + val(c,"f_shot"));
+  L.push("- AI 穿帮：" + val(c,"f_aibug"));
+  L.push("- 画面信息：" + val(c,"f_visualInfo"));
+  L.push("");
+  L.push("## I. 上线数据");
+  L.push("- 完播率：" + val(c,"d_finish") + "；续看率：" + val(c,"d_retain") + "；付费转化：" + val(c,"d_pay"));
+  if(c.drops && c.drops.length){
+    L.push("- 分集流失：");
+    c.drops.forEach(function(r){ L.push("  - EP" + (r.ep||"?") + " 留存 " + (r.rate||"?") + "%：" + (r.note||"")) });
+  }
+  L.push("- 口碑：" + val(c,"d_review"));
+  L.push("- 投流：" + val(c,"d_ads"));
+  L.push("");
+  L.push("## J. 归因分析");
+  L.push("- 归因层：" + ((c.reasons||[]).join(" / ") || "未标"));
+  L.push("- 结论与证据：" + val(c,"j_reason"));
+  L.push("");
+  L.push("## K. 可复用结论");
+  L.push("- 可复制：" + val(c,"k_copy"));
+  L.push("- 不可复制：" + val(c,"k_nocopy"));
+  L.push("- **一句话公式**：" + val(c,"k_formula"));
+  L.push("");
+  L.push("## L. 归档标签");
+  L.push("- 题材：" + val(c,"l_genre") + "；结构：" + val(c,"l_struct") + "；人设：" + val(c,"l_role"));
+  L.push("- 数据表现：" + val(c,"l_perf") + "；失败归因：" + val(c,"l_fail"));
+  L.push("- 关联 SOP：" + val(c,"l_sop"));
+
+  var md = L.join("\n");
+  copy(md);
+}
+function copy(text){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ toast("Markdown 已复制，直接贴进 Obsidian") },
+      function(){ fallbackCopy(text) });
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  var ta = document.createElement("textarea");
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); toast("Markdown 已复制") }catch(e){ toast("复制失败，请手动全选") }
+  document.body.removeChild(ta);
+}
+function exportJSON(){
+  var data = JSON.stringify(cases, null, 2);
+  var blob = new Blob([data], {type:"application/json"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "短剧拆解案例库.json";
+  a.click();
+  toast("已导出全库 JSON");
+}
+
+load();
+</script>
+</body>
+</html>

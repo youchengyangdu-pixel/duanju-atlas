@@ -17,7 +17,14 @@ indexes/           四个维度的检索索引
 formulas/          一句话公式库
 pipeline/          自动拉片：截帧 → ASR → 画面分析 → 提炼出卡
 skills/            对接 Seedance 管线的 skill
+tools/             可直接打开使用的工具（爆款拆解 SOP 模板）
+docs/              方法论文档（skill 库拆解与复用指南）
 ```
+
+## 自带工具与文档
+
+- **`tools/爆款拆解SOP模板.html`**：可填写的拆解工具。新建案例 → 按 12 组填 → 导出 Markdown 直接贴 Obsidian。数据存本机 localStorage，可导出全库 JSON。双击即用，零依赖。
+- **`docs/短剧skill库拆解与复用指南.html`**：两个短剧 skill 库（drama-skills / shuohao-skills）的一手拆解，含 7 步工作流、8 拆解维度、实测基准与质量门清单。
 
 ## 快速开始
 
