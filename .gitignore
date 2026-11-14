@@ -1,0 +1,16 @@
+# 原始素材不入库（即使私有仓也避免误传）
+cases/*/evidence/frames/
+cases/*/evidence/*.mp4
+cases/*/evidence/*.mov
+cases/*/evidence/*.srt
+
+# 系统与临时文件
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+
+# 本地配置（可能含 key）
+.env
+*.local.json

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://duanju-atlas/schemas/case.schema.json",
+  "title": "短剧拆解案例卡",
+  "description": "一部对标短剧的结构化拆解。只写结构与机制，不复制原台词。",
+  "type": "object",
+  "required": ["id", "genre", "structure", "first3", "formula"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^REF-[0-9]{3,}$",
+      "description": "匿名编号，不写真实剧名"
+    },
+    "title_alias": {
+      "type": "string",
+      "description": "匿名代称，如「某狼人复仇剧」"
+    },
+    "genre": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "题材标签，如 狼人 / 复仇 / 西幻 / 都市言情"
+    },
+    "frame": {
+      "type": "string",
+      "description": "底层框架，如 被放逐觉醒 / 扮猪吃虎 / 灰姑娘逆袭"
+    },
+    "structure": {
+      "type": "object",
+      "required": ["arc"],
+      "properties": {
+        "logline": { "type": "string", "description": "一句话卖点" },
+        "arc": { "type": "string", "description": "起承转合" },
+        "core_twist_ep": { "type": ["integer", "string"], "description": "核心反转集数，通常 25–30" },
+        "main_conflict": { "type": "string" },
+        "ending": { "type": "string" }
+      }
+    },
+    "first3": {
+      "type": "object",
+      "description": "前三集专项，最重要的一段",
+      "properties": {
+        "opening_10s": { "type": "string", "description": "开场 10 秒是否有「不对劲」的画面" },
+        "ep1_hook": { "type": "string", "description": "第 1 集结尾钩子类型" },
+        "ep2_escalation": { "type": "string", "description": "第 2 集如何升级冲突" },
+        "ep3_twist_type": { "type": "string", "description": "首次反转翻的是 关系 / 身份 / 处境" },
+        "paywall_candidate": { "type": "string", "description": "首次付费卡点候选位置" }
+      }
+    },
+    "paywall": {
+      "type": "object",
+      "properties": {
+        "ep": { "type": ["integer", "string"], "description": "付费卡点集数" },
+        "on_what": { "type": "string", "description": "卡在哪类悬念上" }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "tag": { "type": "string", "description": "单一定位，不堆标签" },
+          "visual": { "type": "string", "description": "视觉符号" },
+          "keywords": { "type": "string", "description": "性格关键词" },
+          "motive": { "type": "string" },
+          "contrast": { "type": "string", "description": "反差在哪" },
+          "reveal_ep": { "type": ["integer", "string"], "description": "反差第几集亮出" },
+          "reveal_how": { "type": "string", "description": "用什么行动演，不是靠台词说" }
+        }
+      }
+    },
+    "hooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ep": { "type": ["integer", "string"] },
+          "type": {
+            "type": "string",
+            "enum": ["利益骤变", "身份曝光", "道德突破", "情感背叛", "悬念", "羞辱", "危机", "欲望", "其他"]
+          },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "rhythm": {
+      "type": "object",
+      "properties": {
+        "slap_every": { "type": ["integer", "string"], "description": "打脸名场面间隔，参考每 3 集一个" },
+        "twist_every": { "type": ["integer", "string"], "description": "反转间隔，参考每 5 集一次" },
+        "emotion_curve": { "type": "string", "description": "情绪曲线，平的就是问题" }
+      }
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "retention": { "type": "string" },
+        "pay_conv": { "type": "string" },
+        "drop_points": { "type": "string", "description": "关键流失点" },
+        "review_keywords": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "formula": {
+      "type": "string",
+      "description": "一句话公式，如「狼人复仇 = 狼族设定 + 被放逐觉醒 + 归来复仇 + AI 视觉奇观」"
+    },
+    "reusable": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "可复制的部分"
+    },
+    "not_reusable": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "不可复制的部分（时机、渠道、运气）"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "归档标签，按可复用维度"
+    }
+  }
+}

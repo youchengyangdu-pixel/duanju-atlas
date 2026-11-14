@@ -1,0 +1,64 @@
+{
+  "id": "REF-001",
+  "title_alias": "某狼人复仇剧（匿名示例）",
+  "genre": ["狼人", "复仇", "女频"],
+  "frame": "被放逐觉醒",
+  "structure": {
+    "logline": "没有显现力量被逐出王国的公主，二十年后以传奇狼后身份归来复仇",
+    "arc": "受辱逐出 → 隐忍觉醒 → 身份揭露 → 碾压复仇 → 反派追悔",
+    "core_twist_ep": 28,
+    "main_conflict": "被否定的血统 vs 归来的绝对力量",
+    "ending": "女主夺回王位与尊严"
+  },
+  "first3": {
+    "opening_10s": "开场即是当众审判与放逐，没有铺垫",
+    "ep1_hook": "身份曝光",
+    "ep2_escalation": "反派继续施压，女主被迫离开王国",
+    "ep3_twist_type": "身份（力量觉醒）",
+    "paywall_candidate": "第 8 集，狼后身份即将揭晓前"
+  },
+  "paywall": {
+    "ep": 8,
+    "on_what": "女主真实身份与力量即将揭晓的前一刻"
+  },
+  "characters": [
+    {
+      "role": "女主",
+      "tag": "被放逐公主",
+      "visual": "狼族纹章、特定发色",
+      "keywords": "隐忍、清醒",
+      "motive": "夺回属于自己的一切",
+      "contrast": "前期无力自保 vs 后期绝对力量",
+      "reveal_ep": 3,
+      "reveal_how": "用一次失控的力量爆发演出来，不是靠旁白解释"
+    }
+  ],
+  "hooks": [
+    { "ep": 1, "type": "身份曝光", "note": "开场即放逐" },
+    { "ep": 3, "type": "危机", "note": "力量首次失控" },
+    { "ep": 8, "type": "悬念", "note": "付费卡点" }
+  ],
+  "rhythm": {
+    "slap_every": 3,
+    "twist_every": 5,
+    "emotion_curve": "压迫与释放交替，未出现连续三集单一情绪"
+  },
+  "data": {
+    "retention": "（待填）",
+    "pay_conv": "（待填）",
+    "drop_points": "（待填）",
+    "review_keywords": "变身特效、复仇爽感",
+    "note": "示例卡片，数据位待补"
+  },
+  "formula": "狼人复仇 = 狼族设定 + 被放逐觉醒 + 归来复仇 + AI 视觉奇观",
+  "reusable": [
+    "被放逐 → 觉醒 → 归来的三幕结构",
+    "前期弱后期强的人设反差",
+    "用 AI 做真人拍不起的变身与魔幻场景"
+  ],
+  "not_reusable": [
+    "具体特效风格",
+    "上线时机与投流渠道"
+  ],
+  "tags": ["狼人", "复仇", "被放逐公主", "女频", "结构可用"]
+}

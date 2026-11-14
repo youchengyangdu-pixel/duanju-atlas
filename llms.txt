@@ -1,0 +1,29 @@
+# duanju-atlas
+
+> 爆款短剧拆解知识库。一剧一卡（JSON），四维索引。用于复盘、写剧本、二创。
+
+## 快速导航
+
+- 案例卡：`cases/<REF-ID>/card.json`（结构化）与 `card.md`（人读）
+- 字段规范：`schemas/case.schema.json`
+- 一句话公式：`formulas/formulas.json`
+- 索引：`indexes/by-genre.json` / `by-structure.json` / `by-hook.json` / `by-paywall.json`
+- 自动拉片：`pipeline/run.py`
+- 检索：`pipeline/query.py`
+
+## 怎么用（给 AI）
+
+1. 要写某题材剧本 → 先查 `indexes/by-genre.json` 找到候选 REF-ID，再只读对应的 `card.json`
+2. 要审剧本结构 → 对照同题材卡片的 `first3`、`paywall`、`rhythm`
+3. 要二创 → 读目标卡的 `structure` 与 `reusable`，不改 `not_reusable` 里标注的部分
+4. 不要把整个 cases/ 目录一次性读入，按需取卡
+
+## 卡片关键字段
+
+- `structure.arc`：起承转合
+- `structure.core_twist_ep`：核心反转集数
+- `first3`：前三集设计
+- `paywall.ep` / `paywall.on_what`：付费卡点
+- `characters[].contrast`：人设反差
+- `formula`：一句话公式
+- `reusable` / `not_reusable`：可复制边界
