@@ -261,6 +261,24 @@ footer{border-top:1px solid var(--line);padding:20px 30px;color:var(--t3);font-s
   </div>
 </section>
 
+<section>
+  <div class="sec-h" onclick="this.parentElement.classList.toggle('open')"><span class="n">M</span><span class="t">状态资产与视觉依赖</span><span class="hint">本案新增 · 防止核心设定被抹平</span><span class="arrow">▶</span></div>
+  <div class="sec-b">
+    <div class="note">
+      来源：异兽救世主案例。凡是会随剧情变化的<b>外观、道具、形态、年龄、视力</b>，都要按集数标状态，否则 AI 会把「后戴金丝圆框眼镜」当成全程固定外观。
+    </div>
+    <div class="full"><label>关键道具状态表（状态 × 集数）</label><textarea id="m_props" placeholder="例：眼镜 EP1 碎 / EP1-26 模糊 / EP27 备用 / EP28+ 清晰" oninput="save()"></textarea></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>外观状态变量（含时态标注）</label><textarea id="m_visual" placeholder="人物外观是否带「前期/后期/第 N 集起」？无时态标高风险" oninput="save()"></textarea></div>
+      <div><label>核心设定失效清单</label><textarea id="m_core" placeholder="做错了爽点就消失的设定" oninput="save()"></textarea></div>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>爽点-视觉依赖</label><textarea id="m_depend" placeholder="误判依赖看不清？形态反差依赖变身？谁负责审核" oninput="save()"></textarea></div>
+      <div><label>台词 / 音色核对项</label><textarea id="m_tts" placeholder="中英混排是否先分语种？音色是否匹配？口型是否同步" oninput="save()"></textarea></div>
+    </div>
+  </div>
+</section>
+
 <div class="noprint" style="display:flex;gap:10px;margin-top:22px">
   <button class="btn pri" onclick="exportMD()">导出本案例 Markdown</button>
   <button class="btn" onclick="window.print()">打印</button>
@@ -320,7 +338,7 @@ function delCase(){
 function selectCase(i){
   cur = i;
   var c = cases[i] || blank();
-  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_']").forEach(function(el){
+  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_'],[id^='m_']").forEach(function(el){
     el.value = c[el.id] || "";
   });
   renderHooks(); renderDrops(); renderReasons(); renderList();
@@ -328,7 +346,7 @@ function selectCase(i){
 function save(){
   if(cur < 0) return;
   var c = cases[cur];
-  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_']").forEach(function(el){
+  document.querySelectorAll("[id^='f_'],[id^='d_'],[id^='j_'],[id^='k_'],[id^='l_'],[id^='m_']").forEach(function(el){
     c[el.id] = el.value;
   });
   persist();
@@ -484,6 +502,13 @@ function exportMD(){
   L.push("- 题材：" + val(c,"l_genre") + "；结构：" + val(c,"l_struct") + "；人设：" + val(c,"l_role"));
   L.push("- 数据表现：" + val(c,"l_perf") + "；失败归因：" + val(c,"l_fail"));
   L.push("- 关联 SOP：" + val(c,"l_sop"));
+  L.push("");
+  L.push("## M. 状态资产与视觉依赖");
+  L.push("- 关键道具状态表：" + val(c,"m_props"));
+  L.push("- 外观状态变量：" + val(c,"m_visual"));
+  L.push("- 核心设定失效清单：" + val(c,"m_core"));
+  L.push("- 爽点-视觉依赖：" + val(c,"m_depend"));
+  L.push("- 台词/音色核对项：" + val(c,"m_tts"));
 
   var md = L.join("\n");
   copy(md);

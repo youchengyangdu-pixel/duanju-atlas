@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关键道具状态表 · 模板</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0b0d;--card:#141417;--soft:#101013;--line:#232327;--hi:#2f2f36;
+--txt:#e8e8ed;--t2:#9c9ca6;--t3:#6b6b76;--blue:#5fa8ff;--red:#ff6b6b;--green:#4ee0a4;--amber:#ffb057}
+body{background:var(--bg);color:var(--txt);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:36px 26px 50px}
+h1{font-size:23px;font-weight:600;letter-spacing:-.02em}
+.sub{font-size:13px;color:var(--t2);margin-top:10px;line-height:1.75}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:22px}
+h2{font-size:15px;font-weight:600;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+th{text-align:left;color:var(--t3);font-weight:500;padding:8px 8px;border-bottom:1px solid var(--line);font-size:11px}
+td{padding:5px 6px;border-bottom:1px solid #1a1a1f}
+input,textarea,select{width:100%;background:#0f0f13;border:1px solid var(--line);color:var(--txt);border-radius:6px;padding:7px 9px;font-size:12px}
+textarea{min-height:54px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--blue)}
+.btn{background:#1c1c22;border:1px solid var(--hi);color:var(--txt);border-radius:7px;padding:7px 13px;font-size:12px;cursor:pointer}
+.btn:hover{background:#26262e}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#04101f;font-weight:600}
+.note{font-size:12px;color:var(--t2);line-height:1.8;background:var(--soft);border:1px dashed var(--hi);border-radius:9px;padding:12px 16px;margin-top:14px}
+.note b{color:var(--amber)}
+.tag{font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--hi);color:var(--t3)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:11px;color:var(--t3);margin-bottom:5px}
+.prop{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;background:#111116}
+.prop h3{font-size:13px;color:var(--blue);margin-bottom:12px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e1e26;border:1px solid var(--hi);color:var(--txt);padding:10px 20px;border-radius:8px;font-size:12.5px;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>关键道具状态表</h1>
+<p class="sub">每个影响剧情的道具，按集数列出状态。<b>防止 AI 把「后戴金丝圆框眼镜」这类无时态描述当成全程固定外观。</b></p>
+
+<div class="note">
+  <b>用法</b>：剧本定稿后、生成资产前填。凡是有状态变化的道具都要建行；没有状态变化的道具也要标「恒定」，便于核对。<br>
+  <b>三条硬规则</b>：① 外观描述必须带时态（前期/后期/第 N 集起）；② 多角色用相似配件时要写区分规则；③ 核心设定一旦做错爽点就消失的，标为「失效即崩」。
+</div>
+
+<div class="panel">
+  <h2>道具清单</h2>
+  <div id="props"></div>
+  <button class="btn" onclick="addProp()">＋ 加一个道具</button>
+</div>
+
+<div class="panel">
+  <h2>核心设定失效清单（做错了爽点就消失的设定）</h2>
+  <textarea id="coreList" placeholder="例：女主必须看不清（前 26 集），否则「近视误判」爽点不存在，第 27 集成长弧也被抹平" style="min-height:80px"></textarea>
+</div>
+
+<div style="margin-top:20px;display:flex;gap:10px">
+  <button class="btn pri" onclick="exportMD()">导出 Markdown</button>
+  <button class="btn" onclick="window.print()">打印</button>
+</div>
+
+<div class="note">
+  参考案例：《高度近视后我成了异兽救世主》——眼镜 EP1 碎 / EP1-26 模糊 / EP27 备用 / EP28+ 清晰。<br>
+  本表为 duanju-atlas 配套模板，可独立使用。
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var props = [];
+
+function addProp(preset){
+  props.push(preset || {name:"", effect:"", states:[{range:"", state:"", note:""}], constant:false});
+  render();
+}
+
+function render(){
+  var box = document.getElementById("props");
+  box.innerHTML = props.map(function(p, i){
+    return '<div class="prop"><h3>道具 ' + (i+1) + '</h3>' +
+      '<div class="grid">' +
+      '<div><label>道具名</label><input value="' + esc(p.name) + '" onchange="props['+i+'].name=this.value"></div>' +
+      '<div><label>对剧情的影响</label><input value="' + esc(p.effect) + '" onchange="props['+i+'].effect=this.value"></div>' +
+      '</div>' +
+      '<div style="margin-top:10px"><label>状态 × 集数（每行一条）</label>' +
+      '<div id="states-' + i + '">' +
+      p.states.map(function(s, j){
+        return '<div class="grid" style="grid-template-columns:1fr 1.4fr 1.4fr;margin-bottom:6px">' +
+          '<input placeholder="集数范围，如 EP1-26" value="' + esc(s.range) + '" onchange="props['+i+'].states['+j+'].range=this.value">' +
+          '<input placeholder="状态，如 碎裂/不戴" value="' + esc(s.state) + '" onchange="props['+i+'].states['+j+'].state=this.value">' +
+          '<input placeholder="剧情功能" value="' + esc(s.note) + '" onchange="props['+i+'].states['+j+'].note=this.value">' +
+          '</div>';
+      }).join("") +
+      '</div>' +
+      '<button class="btn" onclick="props['+i+'].states.push({range:\'\',state:\'\',note:\'\'});render()">＋ 加一行状态</button>' +
+      '</div>' +
+      '<div style="margin-top:10px"><label><input type="checkbox" style="width:auto;margin-right:6px" ' + (p.constant?"checked":"") + ' onchange="props['+i+'].constant=this.checked">该道具全程恒定（无状态变化）</label></div>' +
+      '</div>';
+  }).join("");
+}
+
+function esc(s){ return String(s==null?"":s).replace(/"/g,"&quot;") }
+
+function exportMD(){
+  var L = ["# 关键道具状态表", ""];
+  props.forEach(function(p, i){
+    L.push("## 道具 " + (i+1) + "：" + (p.name || "未命名"));
+    L.push("- 影响：" + (p.effect || "—"));
+    L.push("- 全程恒定：" + (p.constant ? "是" : "否"));
+    L.push("");
+    L.push("| 集数 | 状态 | 剧情功能 |");
+    L.push("|---|---|---|");
+    p.states.forEach(function(s){
+      L.push("| " + (s.range||"—") + " | " + (s.state||"—") + " | " + (s.note||"—") + " |");
+    });
+    L.push("");
+  });
+  var core = document.getElementById("coreList").value;
+  if(core.trim()){
+    L.push("## 核心设定失效清单");
+    L.push(core);
+  }
+  var md = L.join("\n");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(md).then(function(){ toast("已复制 Markdown") }, function(){ toast("复制失败") });
+  } else toast("请手动全选复制");
+}
+
+function toast(m){
+  var t = document.getElementById("toast");
+  t.textContent = m; t.classList.add("show");
+  setTimeout(function(){ t.classList.remove("show") }, 1800);
+}
+
+// 预置案例：眼镜
+addProp({
+  name:"金丝圆框眼镜（示例）",
+  effect:"决定女主是否看得清，直接决定「近视误判」爽点是否成立",
+  states:[
+    {range:"EP1", state:"摔碎，镜片成网状", note:"建立模糊世界设定"},
+    {range:"EP1-26", state:"碎裂 / 不戴，全是马赛克", note:"核心爽点：把凶兽当毛茸茸"},
+    {range:"EP27", state:"副院长递上备用眼镜", note:"转折点"},
+    {range:"EP28+", state:"戴上，视线恢复清晰", note:"完成手术，弱点变武器"}
+  ],
+  constant:false
+});
+document.getElementById("coreList").value = "女主必须看不清（前 26 集）：做错了，「近视误判」爽点不存在，第 27 集成长弧也被抹平。";
+</script>
+</body>
+</html>

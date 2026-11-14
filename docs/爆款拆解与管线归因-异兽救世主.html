@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>爆款拆解 + 管线归因 · 高度近视后我成了异兽救世主</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0b0d;--card:#141417;--soft:#101013;--line:#232327;--hi:#2f2f36;
+--txt:#e8e8ed;--t2:#9c9ca6;--t3:#6b6b76;
+--blue:#5fa8ff;--red:#ff6b6b;--green:#4ee0a4;--amber:#ffb057;--purple:#b78dff}
+body{background:var(--bg);color:var(--txt);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 30px 56px}
+header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:26px}
+.kicker{font-size:11px;color:var(--t3);letter-spacing:.06em;margin-bottom:12px}
+h1{font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.3}
+.sub{font-size:13.5px;color:var(--t2);margin-top:12px;line-height:1.75;max-width:820px}
+section{margin-bottom:34px}
+h2{font-size:17px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:12px}
+.idx{font-family:ui-monospace,monospace;font-size:11px;color:var(--t3)}
+.lead{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:16px;max-width:880px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;position:relative;overflow:hidden;margin-bottom:12px}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--c)}
+.card h3{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--c)}
+.card p,.card li{font-size:12.5px;color:var(--t2);line-height:1.75}
+.card ul{padding-left:18px}
+.card li{margin-bottom:6px}
+.card b{color:var(--txt);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+th{text-align:left;color:var(--t3);font-weight:500;padding:9px 10px;border-bottom:1px solid var(--line);font-size:11px}
+td{padding:10px;border-bottom:1px solid #1a1a1f;color:var(--t2);vertical-align:top;line-height:1.65}
+td:first-child{color:var(--txt);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td b{color:var(--txt)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid var(--hi);color:var(--t3);margin-left:6px}
+.tag.script{color:var(--blue);border-color:rgba(95,168,255,.35);background:rgba(95,168,255,.07)}
+.tag.user{color:var(--amber);border-color:rgba(255,176,87,.35);background:rgba(255,176,87,.07)}
+.tag.todo{color:var(--t3)}
+.note{background:var(--soft);border:1px dashed var(--hi);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--t2);line-height:1.8;margin-top:12px}
+.note b{color:var(--amber)}
+.quote{background:#0f0f13;border-left:2px solid var(--amber);padding:12px 16px;font-size:12.5px;color:#c8c8d2;line-height:1.8;margin:12px 0;border-radius:0 8px 8px 0}
+.mono{font-family:ui-monospace,monospace;font-size:11.5px;background:#0f0f13;border:1px solid var(--line);border-radius:8px;padding:14px;color:#c8c8d2;line-height:1.8;white-space:pre-wrap}
+.risk{color:#ff8a8a}
+.good{color:var(--green)}
+footer{border-top:1px solid var(--line);padding-top:20px;font-size:11.5px;color:var(--t3);line-height:1.9}
+footer b{color:var(--t2)}
+@media(max-width:800px){.grid2{grid-template-columns:1fr}.wrap{padding:26px 16px 40px}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">爆款拆解 + 管线归因 · 实操案例</div>
+  <h1>《高度近视后我成了异兽救世主》</h1>
+  <p class="sub">一部生成过程出了错、却仍然爆了的剧。这份报告拆它的结构，定位它断在哪一环，并把结论转成可执行的质检规则。</p>
+</header>
+
+<!-- 0 -->
+<section>
+  <h2><span class="idx">00</span>案例摘要卡</h2>
+  <div class="panel">
+    <table>
+      <tr><th>项</th><th>内容</th></tr>
+      <tr><td>剧名</td><td>高度近视后我成了异兽救世主 / The Nearsighted Beast Savior</td></tr>
+      <tr><td>体量与赛道</td><td>32 集 · 海外向奇幻异兽 / 轻喜剧 / 甜宠治愈 / 职业爽感</td></tr>
+      <tr><td>核心创意</td><td>1600 度近视的实习兽医，把 S 级凶兽全当成毛茸茸病患</td></tr>
+      <tr><td>结果</td><td>大爆款<span class="tag user">用户陈述</span></td></tr>
+      <tr><td>事故</td><td>角色全程戴眼镜、部分台词「讲胡话」<span class="tag user">用户陈述，待成片复核</span></td></tr>
+      <tr><td>本报告证据边界</td><td>剧本文本已读；成片未逐帧核对，画面问题均标为待查</td></tr>
+    </table>
+  </div>
+  <div class="note">三个事实标记：<span class="tag script">剧本事实</span> 原文可定位　<span class="tag user">用户陈述</span> 生产方反馈　<span class="tag todo">待查</span> 尚无证据。</div>
+</section>
+
+<!-- 1 -->
+<section>
+  <h2><span class="idx">01</span>基础信息</h2>
+  <div class="panel">
+    <table>
+      <tr><th>字段</th><th>内容</th></tr>
+      <tr><td>剧名</td><td>高度近视后我成了异兽救世主</td></tr>
+      <tr><td>别名</td><td>误入异界后我把万兽当毛茸茸 / 在此之前，我一直以为这些动物只是大了点</td></tr>
+      <tr><td>对标剧</td><td>《惜月近视误入异宠医院，把boss当大猫》<span class="tag script">剧本事实</span></td></tr>
+      <tr><td>付费卡点</td><td>一卡 6付7、二卡 10付11、三卡 26付27<span class="tag script">剧本事实</span></td></tr>
+      <tr><td>素材点</td><td>14 个投放切片，4 个投放优先级<span class="tag script">剧本事实</span></td></tr>
+      <tr><td>制作路径</td><td>一键流 AI 生成<span class="tag user">用户陈述</span></td></tr>
+      <tr><td>上线数据</td><td>大爆款；具体完播率、留存曲线未提供<span class="tag todo">待查</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <h2><span class="idx">02</span>核心设定与关键状态资产</h2>
+  <p class="lead">这是本案最重要的一张表。<b>剧本其实有完整的眼镜状态设计</b>，只是没有被结构化成可执行的状态表。</p>
+
+  <div class="panel">
+    <h3 style="font-size:14px;margin-bottom:12px;color:var(--amber)">眼镜状态时间线<span class="tag script">剧本事实</span></h3>
+    <table>
+      <tr><th>集数</th><th>眼镜状态</th><th>剧情功能</th></tr>
+      <tr><td>EP1</td><td>摔碎，镜片碎成网状</td><td>建立「模糊世界」设定，她凑近才能看清轮廓</td></tr>
+      <tr><td>EP1–26</td><td>碎裂 / 不戴，全是马赛克</td><td><b>核心爽点来源</b>：把凶兽当毛茸茸</td></tr>
+      <tr><td>EP27</td><td>副院长递上备用眼镜</td><td>转折点：她因近视不敢主刀</td></tr>
+      <tr><td>EP28+</td><td>戴上，视线恢复清晰</td><td>完成心脉压制手术，<b>弱点变武器</b></td></tr>
+    </table>
+  </div>
+
+  <div class="quote">
+    剧本原文（EP1）：「克洛伊·瓦伦丁趴在积水的石板地上，眼镜掉在一旁，镜片碎成网状。」<br>
+    剧本原文（EP27）：「这是我的备用眼镜。度数可能不完全匹配，但绝对比你凑合看马赛克强百倍。拿着它，去救它！」<br>
+    剧本原文（EP28）：「将金丝圆框眼镜戴在脸上。透过镜片，她的视线恢复清晰，眼神逐渐变得坚定而决绝。」
+  </div>
+
+  <div class="card" style="--c:var(--red)">
+    <h3>嫌疑源头：人物小传里的「无时态外观句」</h3>
+    <p>原文（穿着风格）：「美式休闲兽医风，常穿牛仔背带裤、格纹衬衫配平底帆布鞋，<b>后戴金丝圆框眼镜</b>。」</p>
+    <p>这句话写在人物视觉描述里，<b>没有时间限定</b>。在「资产提取 → 角色参考图」环节，它极易被当成全程固定外观，导致参考图里她始终戴着眼镜。</p>
+  </div>
+
+  <div class="note">
+    <b>为什么这不是普通穿帮：</b>若她全程戴眼镜，前 26 集「近视误判」的爽点不存在，第 27–28 集「戴上眼镜」的成长弧也被抹平。<b>等于这部剧最独特的两层设计同时失效。</b>
+  </div>
+</section>
+
+<!-- 3 -->
+<section>
+  <h2><span class="idx">03</span>结构骨架</h2>
+  <div class="panel">
+    <table>
+      <tr><th>段落</th><th>集数</th><th>内容</th><th>功能</th></tr>
+      <tr><td>前段</td><td>EP1–10</td><td>单元异兽病例：三头犬、百目猫、C 区群兽</td><td>节奏快、爽点密，建立设定</td></tr>
+      <tr><td>中段</td><td>EP11–23</td><td>黑豹伤口、反派追踪、巨熊袭城</td><td>危机递进，情感加深</td></tr>
+      <tr><td>后段</td><td>EP24–32</td><td>群兽护主、黑豹开口、身份揭晓、手术救援</td><td>身份反转 + 成长弧 + 续季钩子</td></tr>
+    </table>
+  </div>
+  <div class="note">核心反转分布在：<b>EP26 黑豹开口</b>（台词钩子）、<b>EP29–30 黑豹即院长</b>（身份钩子）。付费卡点在第 6/7、10/11、26/27 集，与素材点位置基本吻合。</div>
+</section>
+
+<!-- 4 -->
+<section>
+  <h2><span class="idx">04</span>前三集专项</h2>
+  <div class="panel">
+    <table>
+      <tr><th>节点</th><th>内容</th><th>来源</th></tr>
+      <tr><td>黄金前 3 秒</td><td>蓝色火焰犄角的恐怖黑羊低吼 → 切到女主模糊视角 → 变成毛茸茸山羊</td><td class="tag script">剧本素材点一</td></tr>
+      <tr><td>第 1 集钩子</td><td>摔碎眼镜，误入异界，把怪物当宠物</td><td class="tag script">剧本事实</td></tr>
+      <tr><td>第 2 集升级</td><td>三头犬暴走，她一眼看出是耳道寄生虫</td><td class="tag script">剧本素材点二</td></tr>
+      <tr><td>第 2 末–3 集</td><td>黑豹扑倒她却收爪，她为大猫包扎</td><td class="tag script">剧本素材点三</td></tr>
+      <tr><td>首次付费卡点</td><td>第 6/7 集之间（一卡）</td><td class="tag script">剧本事实</td></tr>
+    </table>
+  </div>
+  <div class="note">前三集的设计逻辑：<b>先用视觉反差立设定（黑羊变山羊），再用专业能力立人设（诊断三头犬），最后用情感钩子立关系（黑豹收爪）</b>。这是这部剧能扛住后续失误的底子。</div>
+</section>
+
+<!-- 5 -->
+<section>
+  <h2><span class="idx">05</span>人设系统 · 外观状态变量</h2>
+  <div class="panel">
+    <table>
+      <tr><th>角色</th><th>外观 / 身份状态变量</th><th>风险点</th></tr>
+      <tr><td>克洛伊</td><td>眼镜：碎裂 → 无 → 备用 → 戴上</td><td class="risk">高（本案已发生）</td></tr>
+      <tr><td>塞尔里斯</td><td>形态：黑豹 ↔ 人形院长 ↔ 紫晶战甲</td><td>形态切换需分版本</td></tr>
+      <tr><td>伯纳德</td><td>金丝眼镜 + 白色狼耳</td><td class="risk">与女主眼镜样式相近，易混淆</td></tr>
+    </table>
+  </div>
+  <div class="note"><b>注意：</b>女主和副院长都戴金丝眼镜。如果资产生成把「金丝眼镜」当通用特征，可能出现角色串脸或道具错配。这是第二个待查点。</div>
+
+  <div class="card" style="--c:var(--blue)">
+    <h3>人设的真正亮点：不是「无知者无畏」，是「专业者无畏」</h3>
+    <p>剧本反复强调：女主不是莽，是她能判断。三头犬是耳道寄生虫、百目猫是结膜炎、巨熊是寄生虫导致饥饿。<b>她靠兽医知识解决危机，不是靠看不见危险。</b></p>
+    <p>这一条决定了这个角色能否被长期喜欢，而不只是好笑。</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section>
+  <h2><span class="idx">06</span>节奏与情绪</h2>
+  <div class="panel">
+    <table>
+      <tr><th>类型</th><th>分布</th></tr>
+      <tr><td>爽点（误判反差）</td><td>EP1 黑羊、EP2 三头犬、EP4-5 百目猫、EP6-9 C 区、EP15-19 巨熊</td></tr>
+      <tr><td>情感点（黑豹）</td><td>EP2-3 收爪、EP10/14 孤独、EP24-26 护主、EP29-30 身份揭晓</td></tr>
+      <tr><td>高燃点（群兽）</td><td>EP24-26 群兽护主</td></tr>
+      <tr><td>成长点（弱点变武器）</td><td>EP27-28 戴眼镜完成手术</td></tr>
+    </table>
+  </div>
+  <div class="note">情绪结构是「轻喜剧 + 甜宠 + 高燃 + 成长」四条线交替，不是单一爽感。这是它能留住不同动机观众的原因。</div>
+</section>
+
+<!-- 7 -->
+<section>
+  <h2><span class="idx">07</span>钩子系统 · 素材点映射</h2>
+  <p class="lead">剧本自带 14 个投放素材点和 4 个投放优先级，这本身就是一份「钩子地图」。</p>
+  <div class="panel">
+    <table>
+      <tr><th>优先级</th><th>素材类型</th><th>对应集数</th><th>投放目的</th></tr>
+      <tr><td>一</td><td>设定反差类（近视误判、三头犬、百目猫）</td><td>EP1-5</td><td>冷启动拉新</td></tr>
+      <tr><td>二</td><td>黑豹男主类（收爪、开口、即院长）</td><td>EP2-3、26、29-30</td><td>女性用户与付费转化</td></tr>
+      <tr><td>三</td><td>群兽护主类</td><td>EP24-26</td><td>中后段付费转化</td></tr>
+      <tr><td>四</td><td>手术救援与结局钩子</td><td>EP27-28、32</td><td>高付费意愿测试与续季预热</td></tr>
+    </table>
+  </div>
+  <div class="note"><b>关键观察：</b>剧本把「 EP26 黑豹开口」明确标为「非常强的付费卡点素材」，而它恰好落在第三付费卡点（26/27 集）上。说明这部剧本是按投放逻辑设计的，不只是按叙事逻辑。</div>
+</section>
+
+<!-- 8 -->
+<section>
+  <h2><span class="idx">08</span>台词系统 ·「讲胡话」专项</h2>
+  <p class="lead">用户反馈「还在讲胡话」。成片未逐句核对，本章节只列待查项，不下结论。</p>
+  <div class="panel">
+    <table>
+      <tr><th>可能原因</th><th>怎么验证</th><th>状态</th></tr>
+      <tr><td>TTS 音色与角色不匹配</td><td>对照角色音色表，听主角与配角声线是否串</td><td class="tag todo">待查</td></tr>
+      <tr><td>口型与台词不同步</td><td>抽查近景对白镜头</td><td class="tag todo">待查</td></tr>
+      <tr><td>台词生成错乱（中英混排、语义断裂）</td><td>对照剧本文本与成片字幕</td><td class="tag todo">待查</td></tr>
+      <tr><td>ASR 转写错误导致配音文本错</td><td>回查转写稿与原剧本</td><td class="tag todo">待查</td></tr>
+    </table>
+  </div>
+  <div class="note">剧本本身是中英双语对照写的（每句中文后附英文）。<b>如果管线把双语混排文本直接喂给 TTS，可能出现中英混杂、语义断裂的「讲胡话」现象。</b>这是一个可优先排查的方向。</div>
+</section>
+
+<!-- 9 -->
+<section>
+  <h2><span class="idx">09</span>镜头与视觉 · 剧本意图 vs 成片对照</h2>
+  <p class="lead">成片未逐帧核对，以下是<b>应当对照</b>的清单，不是结论。</p>
+  <div class="panel">
+    <table>
+      <tr><th>剧本意图</th><th>成片应核对项</th><th>状态</th></tr>
+      <tr><td>EP1-26 模糊世界，怪物变毛茸茸</td><td>是否有 POV 模糊镜头；怪物是否被「看清」</td><td class="tag todo">待查</td></tr>
+      <tr><td>女主近视不戴眼镜</td><td>是否全程戴镜</td><td class="tag user">用户反馈已发生</td></tr>
+      <tr><td>EP27-28 戴上眼镜是成长弧</td><td>该节点是否被保留</td><td class="tag todo">待查</td></tr>
+      <tr><td>怪物靠 AI 做视觉奇观</td><td>变身、深渊、精神领域是否穿帮</td><td class="tag todo">待查</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 10 -->
+<section>
+  <h2><span class="idx">10</span>上线数据</h2>
+  <div class="panel">
+    <table>
+      <tr><th>指标</th><th>数据</th><th>状态</th></tr>
+      <tr><td>整体表现</td><td>大爆款，看的人特别多</td><td class="tag user">用户陈述</td></tr>
+      <tr><td>完播率 / 续看率</td><td>未提供</td><td class="tag todo">待查</td></tr>
+      <tr><td>付费转化</td><td>未提供</td><td class="tag todo">待查</td></tr>
+      <tr><td>分集流失曲线</td><td>未提供</td><td class="tag todo">待查</td></tr>
+    </table>
+  </div>
+  <div class="note"><b>待补数据的关键用途：</b>如果有分集流失曲线，就能验证「哪些集是靠设定留人、哪些集是靠情感留人」——这是回答「为什么生成错了还能爆」的直接证据。</div>
+</section>
+
+<!-- 11 -->
+<section>
+  <h2><span class="idx">11</span>事故归因 · 找首个断层</h2>
+  <p class="lead">用「状态变量追踪法」：找出眼镜这个变量最早在哪一环偏离剧本。</p>
+  <div class="panel">
+    <table>
+      <tr><th>环节</th><th>该查什么</th><th>本案嫌疑</th></tr>
+      <tr><td>剧本 → 资产提取</td><td>人物视觉描述是否含无时态外观句</td><td class="risk">⭐ 最高（「后戴金丝圆框眼镜」）</td></tr>
+      <tr><td>角色参考图</td><td>参考图是否戴镜；是否按集数出多版本</td><td class="risk">高</td></tr>
+      <tr><td>道具状态表</td><td>是否存在「眼镜状态 × 集数」映射表</td><td class="risk">剧本中未见此表</td></tr>
+      <tr><td>分镜</td><td>分镜是否标注每集眼镜状态</td><td class="tag todo">待查</td></tr>
+      <tr><td>视频生成</td><td>是否按分镜状态控制道具</td><td class="tag todo">待查</td></tr>
+      <tr><td>配音台词</td><td>TTS 音色 / 口型 / 台词文本</td><td class="tag todo">待查</td></tr>
+    </table>
+  </div>
+  <div class="note">
+    <b>初步结论：</b>最可能断在「资产提取 → 角色参考图」。剧本的视觉描述没有时态，道具状态没有结构化，导致 AI 把「后戴金丝圆框眼镜」当成恒定特征。<br>
+    <b>注意：</b>后续环节不免责。分镜、生成、审核环节也都没能拦住这个错误。
+  </div>
+</section>
+
+<!-- 12 -->
+<section>
+  <h2><span class="idx">12</span>可复用结论 · SOP 改进与规则卡</h2>
+
+  <div class="card" style="--c:var(--green)">
+    <h3>这个案例暴露的三个 SOP 盲区</h3>
+    <ul>
+      <li><b>关键道具状态表</b>：每个影响剧情的道具，按集数列状态。本案：眼镜 EP1 碎 / EP1-26 模糊 / EP27 备用 / EP28+ 清晰</li>
+      <li><b>视觉资产时态检查</b>：人物小传里的外观描述是否带时间限定（「前期」「后期」「第 N 集起」），没有的标为高风险</li>
+      <li><b>核心设定失效清单</b>：哪些设定做错了，整部剧的爽点就消失？本案：女主必须看不清</li>
+    </ul>
+  </div>
+
+  <div class="panel" style="margin-top:12px">
+    <h3 style="font-size:14px;margin-bottom:12px;color:var(--amber)">可直接进管线的规则卡</h3>
+    <table>
+      <tr><th>规则</th><th>检查方式</th><th>触发条件</th></tr>
+      <tr><td><b>PROP-01 道具状态必须有集数映射</b></td><td>资产表里每个关键道具是否有「状态 × 集数」</td><td>存在状态变化的道具</td></tr>
+      <tr><td><b>VIS-02 外观描述必须带时态</b></td><td>人物小传中的外观句是否含「前期/后期/第 N 集起」</td><td>无时态即标高风险</td></tr>
+      <tr><td><b>CORE-03 核心设定失效清单</b></td><td>列出「做错了爽点就消失」的设定，生成前强制核对</td><td>每部剧必做</td></tr>
+      <tr><td><b>CHAR-04 角色间道具区分</b></td><td>多角色戴相似配件时，是否有区分规则</td><td>本案：女主与副院长都戴金丝眼镜</td></tr>
+      <tr><td><b>TTS-05 双语文本处理</b></td><td>中英对照剧本是否先拆分语种再配音</td><td>双语剧本必查</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <b>为什么生成错了还能爆？</b><br>
+    从剧本看，它的留存驱动是<b>设定反差 + 情感钩子 + 群像高燃</b>的组合，而不是单一视觉精度。即使视觉设定执行错了，只要「怪物变宠物」的关系和「黑豹只对她温柔」的情感还在，观众仍然追。<br>
+    <b>对拆解方法的启示：</b>拆爆款时，不能只拆「做对了什么」，还要拆「哪些做错了却不致命」。后者决定了这部剧的容错边界。
+  </div>
+</section>
+
+<!-- 13 -->
+<section>
+  <h2><span class="idx">13</span>归档</h2>
+  <div class="panel">
+    <table>
+      <tr><th>维度</th><th>标签</th></tr>
+      <tr><td>题材</td><td>奇幻异兽 / 轻喜剧 / 甜宠治愈</td></tr>
+      <tr><td>结构模式</td><td>单元病例 + 主线身份揭秘 + 反派递进</td></tr>
+      <tr><td>人设类型</td><td>专业者无畏（非无知者无畏）</td></tr>
+      <tr><td>核心公式</td><td><b>近视误判 = 视觉缺陷 + 怪物反差 + 专业治愈 + 弱点变武器</b></td></tr>
+      <tr><td>失败归因</td><td>视觉资产状态管理缺失（道具时态未结构化）</td></tr>
+      <tr><td>关联 SOP</td><td>PROP-01 / VIS-02 / CORE-03 / CHAR-04 / TTS-05</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <b>证据边界</b><br>
+  剧本事实：原文《高度近视后我成了异兽救世主-爽剧.docx》，已提取 1179 段文本。<br>
+  用户陈述：剧为爆款、生成时角色戴眼镜、台词「讲胡话」。<br>
+  待查项：成片画面、配音、分镜文件、上线数据均未提供，本报告不对这些环节下结论。<br>
+  生成日期：2026-11-14。用途：爆款拆解 SOP 实操案例 + 管线质检规则来源。
+</footer>
+
+</div>
+</body>
+</html>
