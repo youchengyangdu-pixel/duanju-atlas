@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>异兽救世主 · 结构数据拆解</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0b0d;--card:#141417;--soft:#101013;--line:#232327;--hi:#2f2f36;
+--txt:#e8e8ed;--t2:#9c9ca6;--t3:#6b6b76;--blue:#5fa8ff;--green:#4ee0a4;--amber:#ffb057;--red:#ff6b6b;--purple:#b78dff}
+body{background:var(--bg);color:var(--txt);font:13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:34px 26px 50px}
+h1{font-size:23px;font-weight:600;letter-spacing:-.02em}
+.sub{font-size:12.5px;color:var(--t2);margin-top:10px;line-height:1.75}
+h2{font-size:15px;font-weight:600;margin:28px 0 10px;display:flex;align-items:center;gap:10px}
+.idx{font-family:ui-monospace,monospace;font-size:11px;color:var(--t3)}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
+th{text-align:left;color:var(--t3);font-weight:500;padding:7px 8px;border-bottom:1px solid var(--line);font-size:10.5px;position:sticky;top:0;background:var(--bg)}
+td{padding:8px;border-bottom:1px solid #1a1a1f;color:var(--t2);vertical-align:top;line-height:1.55}
+td:first-child{color:var(--txt);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr:hover td{background:#16161c}
+.tag{display:inline-block;font-size:10px;padding:1px 7px;border-radius:4px;border:1px solid var(--hi);color:var(--t2);white-space:nowrap}
+.t-crisis{color:#ff8a8a;border-color:rgba(255,107,107,.3)}
+.t-emotion{color:var(--purple);border-color:rgba(183,141,255,.3)}
+.t-pro{color:var(--blue);border-color:rgba(95,168,255,.3)}
+.t-reverse{color:var(--green);border-color:rgba(78,224,164,.3)}
+.t-funny{color:var(--amber);border-color:rgba(255,176,87,.3)}
+.note{background:var(--soft);border:1px dashed var(--hi);border-radius:9px;padding:12px 16px;font-size:12px;color:var(--t2);line-height:1.8;margin-top:12px}
+.note b{color:var(--amber)}
+.mono{font-family:ui-monospace,monospace;font-size:11px;background:#0f0f13;border:1px solid var(--line);border-radius:8px;padding:14px;color:#c8c8d2;line-height:1.8;white-space:pre-wrap}
+@media(max-width:800px){.wrap{padding:22px 12px 36px}table{font-size:10.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>异兽救世主 · 结构数据拆解</h1>
+<p class="sub">32 集 · 逐集结构表 + 人设参数 + 钩子分布 + 卡点 + 爽点分布。全部为可直接填充的结构数据，不含观后感。</p>
+
+<h2><span class="idx">A</span>逐集结构总表</h2>
+<p class="sub">读法：每行一部可复用的「单集配方」。钩子类型决定观众是否点下一集，爽点类型决定这一集承担什么功能。</p>
+<table>
+<tr><th style="width:44px">集</th><th style="width:40px">场景</th><th>核心事件</th><th style="width:150px">结尾钩子</th><th style="width:88px">钩子类型</th><th style="width:88px">爽点类型</th></tr>
+<tr><td>1</td><td>4</td><td>摔碎眼镜误入异界，黑羊/巨蛇/触手象全当普通动物</td><td>托住三头犬下巴「我知道你很疼」</td><td><span class="tag t-crisis">危机+温情</span></td><td><span class="tag t-funny">误判反差</span></td></tr>
+<tr><td>2</td><td>4</td><td>遮光布+局麻+镊子，取出三头犬耳道寄生虫</td><td>黑豹扑倒女主，獠牙近在咫尺</td><td><span class="tag t-crisis">危机</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>3</td><td>3</td><td>黑豹收爪、女主为它包扎并起名「欧尼克斯」</td><td>当众叫欧尼克斯，护士震惊</td><td><span class="tag t-reverse">身份悬念</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>4</td><td>3</td><td>百目猫精神控制全员，女主免疫</td><td>抱起白猫回诊室</td><td><span class="tag t-crisis">新病患</span></td><td><span class="tag t-funny">误判反差</span></td></tr>
+<tr><td>5</td><td>3</td><td>诊断百目猫为结膜炎，滴眼药水</td><td>百目猫百目全开，众人震惊</td><td><span class="tag t-reverse">能力反差</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>6</td><td>4</td><td>女主认为远程监控不负责任，决定夜巡 C 区</td><td>防爆铁门缓缓打开</td><td><span class="tag t-crisis">禁区</span></td><td><span class="tag t-crisis">危机</span></td></tr>
+<tr><td>7</td><td>4</td><td>C 区收服鬼面鸮（清理羽虱）</td><td>鬼面鸮对她直接闭嘴</td><td><span class="tag t-reverse">能力反差</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>8</td><td>3</td><td>巨蟒缠腿→撒娇、双头鱼检查</td><td>继续检查下一只</td><td><span class="tag t-funny">假危险真撒娇</span></td><td><span class="tag t-funny">误判反差</span></td></tr>
+<tr><td>9</td><td>6</td><td>C 区群兽（岩龟、雷隼等）逐一收服</td><td>揭开黑豹绷带露出伤痕</td><td><span class="tag t-emotion">黑豹伤情</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>10</td><td>2</td><td>黑豹伤口长出新肉芽，情感深化</td><td>伤口溢出白色烟雾</td><td><span class="tag t-crisis">反噬悬念</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>11</td><td>3</td><td>闪回七年前吞核心；西区补给走廊事故</td><td>补给全部延误</td><td><span class="tag t-crisis">新危机</span></td><td><span class="tag t-crisis">主线推进</span></td></tr>
+<tr><td>12</td><td>3</td><td>物资延误、玛芙离开</td><td>女主若有所思</td><td><span class="tag t-emotion">人物关系</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>13</td><td>4</td><td>黑豹血洗遗迹后重伤归来</td><td>女主哭问「你去哪了」</td><td><span class="tag t-emotion">情感爆发</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>14</td><td>1</td><td>彻夜照顾重伤黑豹，贴背入睡</td><td>「下次别独自冒险」</td><td><span class="tag t-emotion">依恋</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>15</td><td>3</td><td>巨熊福波斯虚影降临诊所上空</td><td>绝望压迫感笼罩</td><td><span class="tag t-crisis">大危机</span></td><td><span class="tag t-crisis">危机</span></td></tr>
+<tr><td>16</td><td>3</td><td>巨熊袭城，副院长带头咆哮</td><td>女主内心吐槽副院长</td><td><span class="tag t-funny">喜剧缓冲</span></td><td><span class="tag t-funny">误判反差</span></td></tr>
+<tr><td>17</td><td>4</td><td>女主提急救箱上前，拦住要拼命的黑豹</td><td>训斥黑豹「它都急性应激了」</td><td><span class="tag t-crisis">冲突</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>18</td><td>3</td><td>发现巨熊被寄生虫活活饿崩溃</td><td>真相揭晓</td><td><span class="tag t-reverse">真相反转</span></td><td><span class="tag t-reverse">反转</span></td></tr>
+<tr><td>19</td><td>2</td><td>喂高能营养膏，巨熊翻肚皮臣服</td><td>副院长复杂眼神</td><td><span class="tag t-reverse">认知颠覆</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>20</td><td>1</td><td>巨熊乖顺如山，黑豹一旁注视</td><td>黑豹目送女主离去</td><td><span class="tag t-emotion">情感锚点</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>21</td><td>1</td><td>女主写病历，院长送水关心</td><td>院长注视背影</td><td><span class="tag t-emotion">情感锚点</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>22</td><td>2</td><td>院长长期失眠；黑衣人首领现身</td><td>反派嘲讽巨熊是废物</td><td><span class="tag t-crisis">反派登场</span></td><td><span class="tag t-crisis">危机</span></td></tr>
+<tr><td>23</td><td>1</td><td>反派索要阿比斯核心，防护罩激战</td><td>紫色巨型猫妖虚影显现</td><td><span class="tag t-crisis">大战</span></td><td><span class="tag t-crisis">危机</span></td></tr>
+<tr><td>24</td><td>3</td><td>女主收拾药品冲向战场</td><td>全诊所病患为黑豹开路</td><td><span class="tag t-emotion">群像高燃</span></td><td><span class="tag t-reverse">报恩</span></td></tr>
+<tr><td>25</td><td>1</td><td>女主挡在黑豹身前，直面强敌</td><td>倔强凝视高空强敌</td><td><span class="tag t-crisis">对峙</span></td><td><span class="tag t-reverse">报恩</span></td></tr>
+<tr><td>26</td><td>1</td><td><b>黑豹首次开口「让开」</b></td><td>紫光符文浮现，准备迎战</td><td><span class="tag t-reverse">身份悬念</span></td><td><span class="tag t-reverse">身份钩子</span></td></tr>
+<tr><td>27</td><td>4</td><td>黑豹化人形披紫晶战甲；副院长递备用眼镜</td><td>女主颤抖接过眼镜</td><td><span class="tag t-emotion">成长转折</span></td><td><span class="tag t-reverse">弱点变武器</span></td></tr>
+<tr><td>28</td><td>4</td><td>戴眼镜完成心脉压制手术</td><td>玛芙「你真心把它们当宠物」</td><td><span class="tag t-emotion">情感确认</span></td><td><span class="tag t-pro">专业治愈</span></td></tr>
+<tr><td>29</td><td>1</td><td><b>黑豹即院长</b>，女主社死崩溃</td><td>羞愤转身狂奔</td><td><span class="tag t-reverse">身份揭晓</span></td><td><span class="tag t-funny">社死喜剧</span></td></tr>
+<tr><td>30</td><td>1</td><td>男主解释装哑三个月的原因</td><td>「那晚你想对我说什么」</td><td><span class="tag t-emotion">情感悬念</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>31</td><td>3</td><td>男主告白，相处蒙太奇</td><td>黑豹回望，宿命感定格</td><td><span class="tag t-emotion">情感收束</span></td><td><span class="tag t-emotion">情感锚点</span></td></tr>
+<tr><td>32</td><td>3</td><td>女主看清后依然收治；深渊诊疗科开启</td><td>并肩面对红色深渊漩涡</td><td><span class="tag t-crisis">续季钩子</span></td><td><span class="tag t-reverse">新地图</span></td></tr>
+</table>
+
+<h2><span class="idx">B</span>人设参数表</h2>
+<table>
+<tr><th>角色</th><th>单一定位</th><th>视觉符号</th><th>性格关键词</th><th>反差</th><th>亮出方式</th></tr>
+<tr><td>克洛伊</td><td>高度近视实习兽医</td><td>牛仔背带裤 + 格纹衬衫 + 帆布包</td><td>专业者无畏、同理心强</td><td>看不清危险 vs 看得清病理</td><td>用行动诊断，不靠台词解释</td></tr>
+<tr><td>塞尔里斯</td><td>黑豹 / 院长 / 深渊之主</td><td>黑豹金瞳 / 黑风衣 / 紫晶战甲</td><td>冷酷、隐忍、护短</td><td>全世界怕他 vs 只对她温柔</td><td>EP26 首次开口，EP29 身份揭晓</td></tr>
+<tr><td>伯纳德</td><td>副院长（狼族）</td><td>金丝眼镜 + 白色狼耳</td><td>严谨、责任感强</td><td>怀疑她 vs 彻底信任她</td><td>递备用眼镜完成态度转变</td></tr>
+<tr><td>玛芙</td><td>护士长（猫耳）</td><td>猫耳 + 紧身连衣裙</td><td>冷淡、可靠</td><td>表面吐槽 vs 实际照顾</td><td>递便当、陪夜巡</td></tr>
+</table>
+
+<h2><span class="idx">C</span>钩子类型分布</h2>
+<table>
+<tr><th>钩子类型</th><th>出现集数</th><th>占比</th><th>用途</th></tr>
+<tr><td>危机 / 威胁</td><td>2、6、11、15、22、23、25、32</td><td>25%</td><td>制造紧张，推动追更</td></tr>
+<tr><td>身份悬念 / 反转</td><td>3、5、7、18、19、26、29</td><td>22%</td><td>核心付费驱动</td></tr>
+<tr><td>情感锚点</td><td>10、12、13、14、20、21、28、30、31</td><td>28%</td><td>维持长期投入</td></tr>
+<tr><td>误判反差 / 喜剧</td><td>1、4、8、16</td><td>13%</td><td>冷启动与节奏缓冲</td></tr>
+<tr><td>专业治愈</td><td>2、9、17、28</td><td>13%</td><td>立人设</td></tr>
+</table>
+<div class="note">读法：<b>情感锚点占比最高（28%），身份悬念次之（22%）</b>。说明这部剧不是纯靠反转留人，而是靠「关系持续累积」。</div>
+
+<h2><span class="idx">D</span>付费卡点表</h2>
+<table>
+<tr><th>卡点</th><th>位置</th><th>卡在哪类悬念</th><th>前后剧情</th></tr>
+<tr><td>一卡</td><td>第 6/7 集之间</td><td>C 区禁区开启</td><td>前：百目猫被收服；后：进入高危禁区</td></tr>
+<tr><td>二卡</td><td>第 10/11 集之间</td><td>黑豹伤口反噬 + 七年前秘密</td><td>前：情感深化；后：揭开男主过去</td></tr>
+<tr><td>三卡</td><td>第 26/27 集之间</td><td><b>黑豹首次开口</b></td><td>前：群兽护主；后：化人形 + 戴眼镜</td></tr>
+</table>
+<div class="note">三卡位置与剧本素材点完全对应：<b>EP26 黑豹开口被剧本自评为「非常强的付费卡点素材」</b>，且恰好落在第三付费卡点上。</div>
+
+<h2><span class="idx">E</span>爽点分布</h2>
+<table>
+<tr><th>爽点类型</th><th>集数</th><th>密度</th></tr>
+<tr><td>误判反差</td><td>1、4、8、16</td><td>分散在前中段，作节奏缓冲</td></tr>
+<tr><td>专业治愈</td><td>2、5、7、9、17、19、28</td><td>贯穿全剧，是人设主线</td></tr>
+<tr><td>情感锚点</td><td>3、10、12、13、14、20、21、30、31</td><td>黑豹线持续累积</td></tr>
+<tr><td>报恩 / 高燃</td><td>24、25</td><td>中后段集中爆发</td></tr>
+<tr><td>身份反转</td><td>26、29</td><td>后段两次大反转</td></tr>
+<tr><td>弱点变武器</td><td>27、28</td><td>成长弧顶点</td></tr>
+</table>
+
+<h2><span class="idx">F</span>素材点（投放切片）</h2>
+<p class="sub">剧本自带 14 个素材点与 4 个投放优先级，可直接当投流素材清单用。</p>
+<table>
+<tr><th>优先级</th><th>素材类型</th><th>集数</th><th>投放目的</th></tr>
+<tr><td>一</td><td>设定反差（近视误判、三头犬、百目猫）</td><td>1–5</td><td>冷启动拉新</td></tr>
+<tr><td>二</td><td>黑豹男主（收爪、开口、即院长）</td><td>2–3、26、29–30</td><td>女性用户与付费转化</td></tr>
+<tr><td>三</td><td>群兽护主</td><td>24–26</td><td>中后段付费转化</td></tr>
+<tr><td>四</td><td>手术救援与结局钩子</td><td>27–28、32</td><td>高付费意愿测试与续季预热</td></tr>
+</table>
+
+<h2><span class="idx">G</span>可复用结构（一句话）</h2>
+<div class="mono">视觉缺陷误判 + 专业治愈 + 情感线贯穿 + 弱点变武器
+= 用「看不清」制造信息差，用「专业」立住人设，用「情感线」维持追更，用「弱点」完成成长弧</div>
+
+<div class="note">
+  <b>使用方式</b>：写同类型剧本时，先填 A 表的「核心事件 / 结尾钩子 / 爽点类型」三列，再对照 C 表检查钩子类型是否过于单一。<br>
+  本表为 duanju-atlas 案例 REF-002 的结构数据版。
+</div>
+
+</div>
+</body>
+</html>
