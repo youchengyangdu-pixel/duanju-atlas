@@ -6,7 +6,7 @@ license: MIT
 
 # duanju-atlas · 爆款拆解知识库
 
-知识库位置：`duanju-atlas/`（私有仓库）。
+知识库位置：`duanju-atlas/`（公开仓库）。
 
 一剧一卡（`cases/<REF-ID>/card.json`），四维索引（题材 / 结构 / 钩子 / 付费卡点）。
 
@@ -71,5 +71,5 @@ python duanju-atlas/pipeline/run.py <视频路径> --ref REF-002 --genre 狼人,
 
 - 只拆有权使用的材料；自有或已授权作品才进入下游二创
 - 卡片匿名（REF-ID），不写真实剧名、人名
-- 原始素材只放私有 `evidence/`，不公开
+- 原始素材只放本地 `evidence/`，不入库、不公开
 - **机制候选只收多部剧共有的做法**；单一来源的标为个案，不进复用库
